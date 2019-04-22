@@ -1,0 +1,22 @@
+%{
+#include<stdio.h>
+int chr=0, wrd=0, sent=0, line=0, tcount=0, nums=0, bl_sp=0;
+%}
+sent [.?!]
+%%
+[\t] tcount++;
+{sent} sent++;
+\n { line++; wrd++;} [\t''] wrd++;
+[a-zA-Z] chr++; [ ] bl_sp++;
+[0-9] nums++;
+%%
+void main()
+{
+yyin=fopen("def.txt","r"); yylex();
+printf("\nNo. of lines = %d",line); printf("\nNo. of words = %d",wrd); printf("\nNo. of sentences = %d",sent); printf("\nNo. of characters = %d",chr); printf("\nNo. of tabs = %d",tcount); printf("\nNo. of numbers = %d",nums); printf("\nNo. of space = %d", bl_sp);
+}
+
+def.txt
+
+HELLO world..!! Good moring.
+This is my 1st program
