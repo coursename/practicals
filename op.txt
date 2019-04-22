@@ -1,0 +1,22 @@
+#include<stdio.h> #include<string.h> #include<ctype.h> void main()
+{
+int i=0,j=0,k=0,p[10]; char name[20];
+char key[20]={'(',')','&','%','^','*','/','+','-','|',';'};
+printf("---Operator Precedence	\n");
+printf("\nEnter the expression:"); scanf("%s",name);
+printf("\n---output	\n");
+for(i=0;i<20;i++)
+{
+for(j=0;j<strlen(name);j++)
+{
+char c; c=tolower(name[j]); if(!isalpha(c)&&!isdigit(c))
+{
+if(key[i]==c)
+{
+printf("\n %c is executed %d(%c %c %c)\n",c,k++,tolower(name[j- 1]),c,tolower(name[j+1]));
+}
+}
+}
+}
+
+}
