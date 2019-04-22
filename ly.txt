@@ -1,0 +1,47 @@
+LEX PART:
+
+%{
+#include "y.tab.h"
+%}
+
+%%
+[a-zA-Z] {return ID;}
+[0-9]+ {return NUMBER;} [ \t] {;}
+\n { return 0;
+}
+. { return yytext[0];}
+%%
+
+YACC PART:
+
+%{
+#include<stdio.h>
+%}
+%token ID NUMBER
+%left '+' '-'
+%left '*' '/'
+
+%%
+stmt:expr
+;
+expr: expr '+' expr
+| expr '-' expr
+| expr '*' expr
+| expr '/' expr
+| '(' expr ')'
+| NUMBER
+| ID
+;
+%%
+
+void main()
+{
+printf("enter expr : \n"); yyparse();
+printf("valid exp");
+
+exit(0);
+}
+void yyerror()
+{
+printf("invalid exp"); exit(0);
+}
